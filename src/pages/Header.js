@@ -2,6 +2,7 @@ import { Box, Select, MenuItem , InputLabel } from "@mui/material";
 import { useSelector , useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { setLogout } from "../Redux/UserSlice";
+import { getBaseUrl } from "../services/api";
 const Header = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch()
@@ -19,7 +20,7 @@ const Header = () => {
         <Link to="/home" style={{textDecoration: 'none'}}>Task up</Link>
       </Box>
       <Box display='flex' alignItems="center" gap="10px">
-        <img src={`http://localhost:5000/assets/${user.picturePath}`} width="35px" height="35px" style={{borderRadius: '50%' , objectFit: 'cover'}}  alt={user.name} />
+        <img src={`${getBaseUrl().replace('/api', '')}assets/${user.picturePath}`} width="35px" height="35px" style={{borderRadius: '50%' , objectFit: 'cover'}}  alt={user.name} />
         <Select
           sx={{ boxShadow: 'none' , '.MuiOutlinedInput-notchedOutline' : {border: 0}}}
           value={user.name}
